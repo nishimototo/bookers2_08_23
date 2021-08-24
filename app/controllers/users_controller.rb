@@ -43,6 +43,14 @@ class UsersController < ApplicationController
     @users = @user.followers
   end
 
+  def book_search
+    @user = User.find(params[:id])
+    @books = @user.books
+    create_at = params[:created_at]
+    @book_search = @books.where("created_at LIKE?", "#{create_at}%")
+
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)

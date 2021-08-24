@@ -53,6 +53,18 @@
           </tr>
         </tbody>
       </table>
+
+      <%= form_with url: book_search_user_path(@user), method: :get do |f| %>
+        <%= f.date_field :created_at %>
+        <%= f.submit "検索" %>
+      <% end %>
+      <div id="search_result">
+        <% if @book_search.present? %>
+          <%= render "users/book_search", book_search: @book_search %>
+        <% else %>
+          日付を入力してください
+        <% end %>
+      </div>
     </div>
 
   </div>

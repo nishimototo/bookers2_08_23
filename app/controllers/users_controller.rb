@@ -47,7 +47,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     create_at = params[:created_at]
-    @book_search = @books.where("created_at LIKE?", "#{create_at}%")
+    if create_at == ""
+      @book_search = "日付を入力してください"
+    else
+      @book_search = @books.where("created_at LIKE?", "#{create_at}%")
+    end
+
 
   end
 

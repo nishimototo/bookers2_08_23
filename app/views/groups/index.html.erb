@@ -1,0 +1,33 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/info", user: current_user %>
+      <%= render "books/form", book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Groups</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー数</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td><%= attachment_image_tag group, :image, format: "jpeg", fallback: "no_image.jpg", size: "40x40" %></td>
+              <td><%= link_to group.name, group_path(group) %></td>
+              <td><%= group.introduction %></td>
+              <td><%= group.users.count %></td>
+              <td><%= link_to "Edit", edit_group_path(group), class: "btn btn-success" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

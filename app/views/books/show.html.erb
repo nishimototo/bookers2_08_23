@@ -22,10 +22,11 @@
             <td class="favorite_btn_<%= @book.id %>">
               <%= render "favorites/favorite", book: @book %>
             </td>
+            <td><%= @book.category %></td>
             <td id="comment_count">
               コメント数：<%= @book.book_comments.count %>
             </td>
-
+            <td class="star"></td>
             <% if @user == current_user %>
               <td>
                 <%= link_to "Edit", edit_book_path(@book), class:"btn btn-sm btn-success" %>
@@ -51,3 +52,13 @@
     </div>
   </div>
 </div>
+<script>
+  $('.star').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'book[rate]',
+    score: <%= @book.rate %>,
+    readOnly: true,
+  });
+</script>

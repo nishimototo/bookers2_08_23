@@ -37,7 +37,6 @@
               </td>
               <td>コメント数：<%= book.book_comments.count %></td>
               <td class="star_<%= book.id %>"></td>
-
               <script>
                 $('.star_<%= book.id %>').raty({
                   starOn: "<%= asset_path('star-on.png') %>",
